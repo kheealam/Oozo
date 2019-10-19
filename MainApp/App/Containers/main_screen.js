@@ -7,6 +7,7 @@ import images from '../Images';
 class MainComponent extends Component {
     constructor(props) {
         super(props);
+        this._handlePress = this._handlePress.bind(this);
         this.state = {
             newsfeed: [
                 {
@@ -34,6 +35,7 @@ class MainComponent extends Component {
                     image: images.feed3
                 }]
         };
+        this.renderItem = this.renderItem.bind(this);
     }
 
     static navigationOptions = {
@@ -42,16 +44,21 @@ class MainComponent extends Component {
 
     async componentDidMount() {
     }
-
+    _handlePress () {
+        // alert('test');
+        // console.log("TEST");
+        const {navigate} = this.props.navigation;
+        navigate('details',{})
+    }
     renderItem({ item }) {
-        console.log(item);
         return (
-            <TouchableOpacity style={styles.itemContainer}>
+            <TouchableOpacity style={styles.itemContainer} onPress={this._handlePress}>
+
                 <View style={styles.container_column}>
                     <Image style={styles.image} source={item.image}></Image>
                     <Text style={styles.headline}>{item.headline}</Text>
                     <View style={styles.container_row}>
-                        
+
                         <View style={styles.category}>
                             <EvilIcons name="clock" size={totalSize(2)} color='rgb(100,100,100)' />
                             <Text style={styles.greytext}>{item.category}</Text>
@@ -60,7 +67,6 @@ class MainComponent extends Component {
                             <FontAwesome name="tag" size={totalSize(2)} color='rgb(100,100,100)' />
                             <Text style={styles.greytext}>{item.timeAgo}</Text>
                         </View>
-
                     </View>
                     <Text style={styles.content}>{item.content}</Text>
                 </View>
@@ -110,15 +116,15 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
-        width:null,
-        height:300,
+        width: null,
+        height: 300,
     },
     headline: {
         fontFamily: 'Courier New',
-        fontSize:20
+        fontSize: 20
     },
     greytext: {
         fontFamily: 'Courier New',
-        color:"#999"
+        color: "#999"
     },
 })
