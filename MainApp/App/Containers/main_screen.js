@@ -25,12 +25,14 @@ class MainComponent extends Component {
                     category: "Politienieuws",
                     image: images.feed2
                 },
-                { id: 3, 
-                    headline: "Insluiper besluit eerst te gaan slapen", 
-                    content: "Tilburg - Een insluiper is zaterdagochtend wel heel gemakkelijk opgepakt. Hij lag nog te slapen in het atelier waar hij was binnen geslopen.", 
-                    timeAgo: "1 uur en 31 minuten geleden", 
-                    category: "Politienieuws", 
-                    image: images.feed3 }]
+                {
+                    id: 3,
+                    headline: "Insluiper besluit eerst te gaan slapen",
+                    content: "Tilburg - Een insluiper is zaterdagochtend wel heel gemakkelijk opgepakt. Hij lag nog te slapen in het atelier waar hij was binnen geslopen.",
+                    timeAgo: "1 uur en 31 minuten geleden",
+                    category: "Politienieuws",
+                    image: images.feed3
+                }]
         };
     }
 
@@ -46,19 +48,19 @@ class MainComponent extends Component {
         return (
             <TouchableOpacity style={styles.itemContainer}>
                 <View style={styles.container_column}>
+                    <Image style={styles.image} source={item.image}></Image>
+                    <Text style={styles.headline}>{item.headline}</Text>
                     <View style={styles.container_row}>
-                        <Image style={styles.image} source={item.image}></Image>
-                        <View style={styles.subcontainer_column}>
-                            <Text style={styles.text}>{item.headline}</Text>
-                            <View style={styles.category}>
-                                <EvilIcons name="clock" size={totalSize(2)} color='rgb(100,100,100)' />
-                                <Text style={styles.text}>{item.category}</Text>
-                            </View>
-                            <View style={styles.category}>
-                                <FontAwesome name="tag" size={totalSize(2)} color='rgb(100,100,100)' />
-                                <Text style={styles.text}>{item.timeAgo}</Text>
-                            </View>
+                        
+                        <View style={styles.category}>
+                            <EvilIcons name="clock" size={totalSize(2)} color='rgb(100,100,100)' />
+                            <Text style={styles.greytext}>{item.category}</Text>
                         </View>
+                        <View style={styles.category}>
+                            <FontAwesome name="tag" size={totalSize(2)} color='rgb(100,100,100)' />
+                            <Text style={styles.greytext}>{item.timeAgo}</Text>
+                        </View>
+
                     </View>
                     <Text style={styles.content}>{item.content}</Text>
                 </View>
@@ -102,29 +104,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     content: {
-        flex: 2,
+        fontFamily: 'Courier New',
+        flex: 4,
         marginLeft: 5
     },
     image: {
         flex: 1,
-        height: null,
-        width: null,
-        resizeMode: 'contain'
+        width:null,
+        height:300,
     },
-    text: {
+    headline: {
         fontFamily: 'Courier New',
+        fontSize:20
     },
-    ImageBg: {
-        flex: 1,
-        height: null,
-        width: null,
-        alignItems: 'center',
-        justifyContent: 'center'
+    greytext: {
+        fontFamily: 'Courier New',
+        color:"#999"
     },
-    logo: {
-        //marginTop: height(30),
-        height: totalSize(20),
-        width: totalSize(17),
-        //marginBottom: height(3),
-    }
 })
