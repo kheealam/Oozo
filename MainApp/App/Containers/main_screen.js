@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, FlatList, Text, Image, StyleSheet } from 'react-native';
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { totalSize, height } from 'react-native-dimension'
 import images from '../Images';
 class MainComponent extends Component {
     constructor(props) {
         super(props);
+        console.log("CONSTRUCTOR");
         this.state = {
-            sampleValues: ["Feed1\nSecondLine\n", "Feed2", "Feed3", "Feed4", "Feed5"]
+            newsfeed: [{ id: 1, headline: "test", content: "Sample content", timeAgo: "5 minutes ago", category: "Politienieuws", image: images.logo },
+            { id: 2, headline: "test", content: "Sample content", timeAgo: "5 minutes ago", category: "Politienieuws", image: images.logo },
+            { id: 3, headline: "test", content: "Sample content", timeAgo: "5 minutes ago", category: "Politienieuws", image: images.logo }]
         };
     }
 
@@ -17,24 +22,36 @@ class MainComponent extends Component {
     async componentDidMount() {
     }
 
-
-    renderItem(item) {
-
+    renderItem({ item }) {
+        console.log(item);
         return (
-            <View style={{ height: 200 }}>
-                <Image style={styles.image} source={images.logo} />
-                <Text style={styles.text}>{item}</Text>
+            <View style={styles.container_column}>
+                <View style={styles.container_row}>
+                    <Image style={styles.image} source={item.image}></Image>
+                    <View style={styles.subcontainer_column}>
+                        <Text style={styles.text}>{item.headline}</Text>
+                        <View style={styles.category}>
+                            <EvilIcons name="clock" size={totalSize(2)} color='rgb(100,100,100)' />
+                            <Text style={styles.text}>{item.category}</Text>
+                        </View>
+                        <View style={styles.category}>
+                            <FontAwesome name="tag" size={totalSize(2)} color='rgb(100,100,100)' />
+                            <Text style={styles.text}>{item.timeAgo}</Text>
+                        </View>
+                    </View>
+                </View>
+                <Text style={styles.content}>{item.content}</Text>
             </View>
         );
     }
 
     render() {
+        console.log("RENDER");
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
-                    data={this.state.sampleValues}
-                    renderItem={({ item }) => this.renderItem(item)}
-                    keyExtractor={item => item.id}
+                    data={this.state.newsfeed}
+                    renderItem={this.renderItem}
                 />
             </SafeAreaView>
         );
@@ -44,6 +61,29 @@ class MainComponent extends Component {
 export default MainComponent;
 
 const styles = StyleSheet.create({
+    container_row: {
+        flexDirection: 'row',
+        width: null,
+    },
+    container_column: {
+        flex: 1,
+        flexDirection: 'column',
+        width: null,
+    },
+    subcontainer_column:{
+        flex: 1,
+        flexDirection: 'column',
+        width: null,
+    },
+    category: {
+        alignItems: 'center',
+        flex: 1,
+        flexDirection: 'row',
+    },
+    content: {
+        flex: 2,
+        marginLeft:5
+    },
     image: {
         flex: 1,
         height: null,
@@ -65,11 +105,5 @@ const styles = StyleSheet.create({
         height: totalSize(20),
         width: totalSize(17),
         //marginBottom: height(3),
-    },
-    txt: {
-        marginTop: height(2.5),
-        fontSize: totalSize(2),
-        color: 'black'
-        //color: 'rgb(219,0,0)'
     }
 })
