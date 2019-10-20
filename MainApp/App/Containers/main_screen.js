@@ -44,11 +44,11 @@ class MainComponent extends Component {
 
     async componentDidMount() {
     }
-    _handlePress () {
+    _handlePress() {
         // alert('test');
         // console.log("TEST");
-        const {navigate} = this.props.navigation;
-        navigate('details',{})
+        const { navigate } = this.props.navigation;
+        navigate('details', {})
     }
     renderItem({ item }) {
         return (
@@ -70,6 +70,12 @@ class MainComponent extends Component {
                     </View>
                     <Text style={styles.content}>{item.content}</Text>
                 </View>
+                <View
+                    style={{
+                        borderBottomColor: 'black',
+                        borderBottomWidth: 1,
+                    }}
+                />
             </TouchableOpacity>
         );
     }
