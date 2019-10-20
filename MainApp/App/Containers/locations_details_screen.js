@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { View, Button, ButtonGroup, CheckBox, SafeAreaView, Text, StyleSheet } from 'react-native';
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { totalSize, height } from 'react-native-dimension'
-import images from '../Images';
 class LocationDetailsComponent extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +11,7 @@ class LocationDetailsComponent extends Component {
     }
 
     static navigationOptions = {
-        title: 'Location Details',
+        title: 'Berlin, Germany',
     }
 
     async componentDidMount() {
@@ -43,21 +39,16 @@ class LocationDetailsComponent extends Component {
                             checked={this.state.push_notifications}
                         />
                     </View>
-                    <View>
+                    <View style={styles.container_row}>
                         <Text style={styles.text}>Set Radius</Text>
-                        <ButtonGroup>
-                            <Button togglable={true}>
-                                5 km
+                        <Button togglable={true} title="5km">
                         </Button>
-                            <Button togglable={true}>
-                                10 km
+                        <Button togglable={true} title="10km">
                         </Button>
-                            <Button togglable={true}>
-                                25 km
+                        <Button togglable={true} title="25km">
                         </Button>
-                        </ButtonGroup>
                     </View>
-                    <View></View>
+                    <View><Button color="#F00" title='Delete' style={styles.delete} /></View>
                 </View>
             </SafeAreaView>
         );
@@ -76,6 +67,10 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         flex: 5
+    },
+    delete: {
+        color: '#F0F',
+        fontSize: 20,
     },
     checkbox: {
         flex: 1
