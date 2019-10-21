@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { totalSize, height } from 'react-native-dimension'
+import { theme, Text, withGalio, GalioProvider } from 'galio-framework'
+import { Block } from 'galio-framework';
+import { Card } from 'galio-framework';
 import images from '../Images';
 class DetailsComponent extends Component {
     constructor(props) {
@@ -30,28 +33,28 @@ class DetailsComponent extends Component {
     render() {
         return (
             <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.container_column}>
-                    <Text style={styles.headline}>{this.state.detail.headline}</Text>
-                    <View style={styles.container_row}>
+                <Block style={styles.container_column}>
+                    <Text h4>{this.state.detail.headline}</Text>
+                    <Block style={styles.container_row}>
                         <EvilIcons style={styles.icon} name="clock" size={totalSize(3)}/>
                         <Text style={styles.greytext}>{this.state.detail.datetime}</Text>
-                    </View>
-                    <View style={styles.container_row}>
+                    </Block>
+                    <Block style={styles.container_row}>
                         <FontAwesome style={styles.icon} name="map-marker" size={totalSize(3)}/>
                         <Text style={styles.greytext}>{this.state.detail.location}</Text>
-                    </View>
-                    <View style={styles.container_row}>
+                    </Block>
+                    <Block style={styles.container_row}>
                         <FontAwesome style={styles.icon} name="newspaper-o" size={totalSize(3)} />
                         <Text style={styles.greytext}>{this.state.detail.source}</Text>
-                    </View>
-                    <View style={styles.container_row}>
+                    </Block>
+                    <Block style={styles.container_row}>
                         <FontAwesome style={styles.icon} name="bell" size={totalSize(3)} />
                         <Text style={styles.greytext}>{this.state.detail.alert}</Text>
-                    </View> 
-                    <Text style={styles.summary}>{this.state.detail.summary}</Text>
-                    <Text style={styles.article}>{this.state.detail.article}</Text>
+                    </Block> 
+                    <Text p>{this.state.detail.summary}</Text>
+                    <Text muted>{this.state.detail.article}</Text>
                     <Image style={styles.image} source={images.feed2}></Image>
-                </View>
+                </Block>
             </ScrollView>
         );
     }
@@ -61,31 +64,31 @@ export default DetailsComponent;
 
 const styles = StyleSheet.create({
     container_row: {
-        flex:1,
-        marginLeft:5,
-        alignItems:'center',
+        flex: 1,
+        margin: 5,
+        alignItems: 'center',
         flexDirection: 'row',
     },
-    article:{
+    article: {
         fontFamily: 'Courier New',
-        fontSize:16,
+        fontSize: 16,
     },
-    summary:{
+    summary: {
         fontFamily: 'Courier New',
-        fontWeight:'bold',
-        fontSize:16,
+        fontWeight: 'bold',
+        fontSize: 16,
     },
-    
-    icon:{
-        flex:1,
+
+    icon: {
+        flex: 1,
     },
     container_column: {
-        flex:1,
+        flex: 1,
         margin: 5,
         flexDirection: 'column',
     },
     subcontainer_column: {
-        
+
         flex: 2,
         flexDirection: 'column',
         width: null,
@@ -106,16 +109,16 @@ const styles = StyleSheet.create({
         height: 300,
     },
     headline: {
-        flex:2,
+        flex: 2,
         fontFamily: 'Courier New',
-        fontWeight:'bold',
+        fontWeight: 'bold',
         fontSize: 20
     },
 
     greytext: {
-        flex:10,
-        fontWeight:'bold',
+        flex: 10,
+        fontWeight: 'bold',
         fontFamily: 'Courier New',
-        fontSize:16,
+        fontSize: 16,
     },
 })

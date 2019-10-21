@@ -15,6 +15,8 @@ class LocationsScreen extends Component {
             locations: ["Current location", "Berlin, Germany", "Amsterdam, Netherlands", "London, UK"]
         };
         this.setModalVisible = this.setModalVisible.bind(this);
+        this._handlePress = this._handlePress.bind(this);
+        this.renderItem = this.renderItem.bind(this);
     }
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
@@ -34,7 +36,6 @@ class LocationsScreen extends Component {
         return {
             title: 'Locations',
             headerTitleStyle: { fontFamily: 'Helvetica-Bold', fontSize: 30 },
-            headerLeft: () => (<TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerOpen')}><EvilIcons name="navicon" size={totalSize(5)} /></TouchableOpacity> ),
             headerRight: () => (
                 <View >
                     <TouchableOpacity style={styles.header_button} onPress={() => {
@@ -47,20 +48,28 @@ class LocationsScreen extends Component {
             ),
         }
     };
+    _handlePress() {
+        const { navigate } = this.props.navigation;
+        navigate('locationDetails');
+    }
     renderItem({ item }) {
         return (
-            <View style={styles.view}>
-                <View style={styles.location_row}>
-                    <Text style={styles.location}>{item}</Text>
-                    <AntDesign name='right' style={styles.details_image} size={totalSize(3)} />
+            <TouchableOpacity style={styles.header_button} onPress={()=>
+                this._handlePress()
+            }>
+                <View style={styles.view}>
+                    <View style={styles.location_row}>
+                        <Text style={styles.location}>{item}</Text>
+                        <AntDesign name='right' style={styles.details_image} size={totalSize(3)} />
+                    </View>
+                    <View
+                        style={{
+                            borderBottomColor: 'black',
+                            borderBottomWidth: 0.4,
+                        }}
+                    />
                 </View>
-                <View
-                    style={{
-                        borderBottomColor: 'black',
-                        borderBottomWidth: 0.4,
-                    }}
-                />
-            </View>
+            </TouchableOpacity>
         );
     }
 

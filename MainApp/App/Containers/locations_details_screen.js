@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Button, ButtonGroup, CheckBox, SafeAreaView, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, CheckBox, SafeAreaView, Text, StyleSheet } from 'react-native';
+import { Button, Block } from 'galio-framework';
+import { ButtonGroup } from 'react-native-elements';
 class LocationDetailsComponent extends Component {
     constructor(props) {
         super(props);
@@ -8,6 +10,7 @@ class LocationDetailsComponent extends Component {
             selectedIndex: 2
         };
         this.updateIndex = this.updateIndex.bind(this)
+        
     }
 
     static navigationOptions = {
@@ -20,13 +23,14 @@ class LocationDetailsComponent extends Component {
         this.setState({ selectedIndex })
     }
     render() {
-        const buttons = ['5 km', '10 km', '25 km']
+        const buttons = ['5km', '10km', '25km']
         const { selectedIndex } = this.state
         return (
+
             <SafeAreaView style={styles.container}>
                 <View>
                     <View style={styles.container_row}>
-                        <Text style={styles.text}>Show push notifications</Text>
+                        <Text p>Show push notifications</Text>
                         <CheckBox
                             center
                             title='Show push notifications'
@@ -40,15 +44,17 @@ class LocationDetailsComponent extends Component {
                         />
                     </View>
                     <View style={styles.container_row}>
-                        <Text style={styles.text}>Set Radius</Text>
-                        <Button togglable={true} title="5km">
-                        </Button>
-                        <Button togglable={true} title="10km">
-                        </Button>
-                        <Button togglable={true} title="25km">
-                        </Button>
+                        <Text p>Set Radius</Text>
+                        <ButtonGroup
+                            onPress={this.updateIndex}
+                            selectedIndex={selectedIndex}
+                            buttons={buttons}
+                            containerStyle={styles.radius}
+                        />
                     </View>
-                    <View><Button color="#F00" title='Delete' style={styles.delete} /></View>
+                    <Block style={styles.delete}>
+                    <Button round uppercase color="red">DELETE</Button>
+                    </Block>
                 </View>
             </SafeAreaView>
         );
@@ -64,13 +70,18 @@ const styles = StyleSheet.create({
         width: null,
         alignItems: 'center'
     },
+    radius:{
+        flex: 5,
+        height: 20,
+    },
     text: {
         fontSize: 20,
         flex: 5
     },
     delete: {
-        color: '#F0F',
-        fontSize: 20,
+        padding:20,
+        alignItems:'center'
+        
     },
     checkbox: {
         flex: 1

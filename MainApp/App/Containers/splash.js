@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Image } from 'react-native';
 import { totalSize, width, height } from 'react-native-dimension'
+import images from '../Themes/Images'
 class Splash extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +14,7 @@ class Splash extends Component {
     }
     
     async componentDidMount() {
+        setTimeout(() => { this.props.navigation.replace('login') }, 5000);
     }
 
 
@@ -20,9 +22,9 @@ class Splash extends Component {
 
     render() {
         return (
-<View style={styles.body}><Text>HelloWorld</Text>
-
-</View>
+            <ImageBackground style={styles.ImageBg}>
+                <Image source={images.logo} style={styles.logo} />
+            </ImageBackground>
         );
     }
 }
@@ -41,6 +43,7 @@ const styles = StyleSheet.create({
         //marginTop: height(30),
         height: totalSize(20),
         width: totalSize(17),
+        resizeMode:'center'
         //marginBottom: height(3),
     },
     txt: {

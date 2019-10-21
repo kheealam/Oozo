@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { theme, withGalio, GalioProvider } from 'galio-framework'
+import { Card } from 'galio-framework';
 import { View, SafeAreaView, FlatList, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -52,30 +54,17 @@ class MainComponent extends Component {
     }
     renderItem({ item }) {
         return (
-            <TouchableOpacity style={styles.itemContainer} onPress={this._handlePress}>
-
-                <View style={styles.container_column}>
-                    <Image style={styles.image} source={item.image}></Image>
-                    <Text style={styles.headline}>{item.headline}</Text>
-                    <View style={styles.container_row}>
-
-                        <View style={styles.category}>
-                            <EvilIcons name="clock" size={totalSize(2)} color='rgb(100,100,100)' />
-                            <Text style={styles.greytext}>{item.category}</Text>
-                        </View>
-                        <View style={styles.category}>
-                            <FontAwesome name="tag" size={totalSize(2)} color='rgb(100,100,100)' />
-                            <Text style={styles.greytext}>{item.timeAgo}</Text>
-                        </View>
-                    </View>
-                    <Text style={styles.content}>{item.content}</Text>
-                </View>
-                <View
-                    style={{
-                        borderBottomColor: 'black',
-                        borderBottomWidth: 1,
-                    }}
-                />
+            <TouchableOpacity onPress={this._handlePress}>
+            <Card
+                flex
+                borderless
+                style={styles.card}
+                title={item.headline}
+                caption={item.content}
+                imageStyle={styles.cardImageRadius}
+                imageBlockStyle={{ padding: theme.SIZES.BASE / 2 }}
+                image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
+            />
             </TouchableOpacity>
         );
     }
