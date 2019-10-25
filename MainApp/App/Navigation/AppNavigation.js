@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Splash from '../Containers/splash';
 import Login from '../Containers/login';
+import SignUp from '../Containers/signup';
 import MainComponent from '../Containers/main_screen';
 import DetailsComponent from '../Containers/details_screen';
 import LocationsScreen from '../Containers/locations_screen';
@@ -15,7 +16,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Settings from '../Containers/settings';
 import EditProfileClient from '../Containers/profile'; 
-import { totalSize, height } from 'react-native-dimension';
+import { totalSize } from 'react-native-dimension';
 
 const NewsFeedStack = createStackNavigator({
     main: {
@@ -115,6 +116,9 @@ const SwitchNavigator = createSwitchNavigator({
     },
     login:{
         screen:Login
+    },
+    signup:{
+        screen:SignUp
     },
     main:TabNavigator
 },{

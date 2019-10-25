@@ -37,13 +37,13 @@ const styles = StyleSheet.create({
         height: null,
         width: null,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     logo: {
         //marginTop: height(30),
-        height: totalSize(20),
-        width: totalSize(17),
-        resizeMode:'center'
+        height: 300,
+        width: 200,
+        resizeMode:'contain'
         //marginBottom: height(3),
     },
     txt: {

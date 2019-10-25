@@ -41,16 +41,15 @@ class Login extends Component {
     }
 
     _toggleModalForgetPassword = () =>
-    this.props.navigation.navigate('locations')
+        this.setState({ isModalVisibleForgetPassword: !this.state.isModalVisibleForgetPassword });
 
-    _toggleModalSelectSignUp = () =>{
-        this.props.navigation.navigate('signup')
-    }
+    _toggleModalSelectSignUp = () =>
+        this.setState({ IsModalVisibleSelectSignUp: !this.state.IsModalVisibleSelectSignUp });
 
     manageOverlay = () => this.setState({ overlayVisible: !this.state.overlayVisible })
 
     goto_signup_Client = () => {
-        this.props.navigation.navigate('signupClient')
+        this.props.navigation.navigate('signup')
         this._toggleModalSelectSignUp()
     }
     goto_signup_Technician = () => {
@@ -110,9 +109,9 @@ class Login extends Component {
     }
 
     resetPassword(email) {
-        sendPasswordReset(email).then(() => {
-            this._toggleModalForgetPassword();
-        });
+        // sendPasswordReset(email).then(() => {
+        //     this._toggleModalForgetPassword();
+        // });
     }
 
     // <Loader ref={r => this.loader = r} />
@@ -130,7 +129,7 @@ class Login extends Component {
                             </View>
                             <View style={[styles.txtContainer, { flexDirection: 'row' }]}>
                                 <Text style={[styles.welcome, { fontSize: totalSize(1.5), fontWeight: 'normal' }]}>DON'T HAVE AN ACCOUNT? </Text>
-                                <TouchableOpacity onPress={() => this._toggleModalSelectSignUp()}>
+                                <TouchableOpacity onPress={() => this.goto_signup_Client()}>
                                     <Text style={[styles.welcome, { fontSize: totalSize(1.5), color: colors.O_blueColor, fontWeight: 'normal' }]}>SIGN UP!</Text>
                                 </TouchableOpacity>
                             </View>
@@ -183,7 +182,7 @@ class Login extends Component {
                                     onChangeText={(text) => this.setState({ password: text })}
                                 />
                             </View>
-                            
+
                             <View style={[styles.InputContainer, { backgroundColor: 'transparent', elevation: 0, justifyContent: 'flex-end', marginVertical: 0 }]}>
                                 <Text style={[styles.welcome, { fontSize: totalSize(1.5), color: colors.O_blueColor }]} onPress={() => this._toggleModalForgetPassword()} >Forgot Password?</Text>
                             </View>
@@ -247,6 +246,60 @@ class Login extends Component {
                         }
                     </View>
                 </Modal>
+                <Modal
+                    isVisible={this.state.IsModalVisibleSelectSignUp} // Sign Up
+                    animationIn='slideInUp'
+                    animationOut='slideOutDown'
+                    backdropColor='black'
+                    animationInTiming={700}
+                    animationOutTiming={700}
+                    backdropOpacity={0.50}>
+                    <View style={{ backgroundColor: 'white', height: height(35), width: width(95), alignSelf: 'center', borderRadius: 5 }}>
+                        {
+                            this.state.LoadingForgetPassword === true ?
+                                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                                    <ActivityIndicator color={colors.SPA_redColor} size={totalSize(5)} />
+                                </View>
+                                :
+                                <View style={{ flex: 1 }}>
+                                    <View style={{ flex: 0.5, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', backgroundColor: 'transparent' }}>
+                                        <TouchableOpacity onPress={this._toggleModalSelectSignUp} style={{ backgroundColor: 'Transparent', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>
+                                            <Icon name='close' color={colors.SPA_redColor} />
+                                        </TouchableOpacity>
+                                        <View style={{ width: 5 }}></View>
+                                    </View>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent' }}>
+                                        <Text style={[styles.welcome, { fontSize: totalSize(2) }]}>Register Your Account</Text>
+                                        <Text style={[styles.welcome, { fontSize: totalSize(2) }]}>As</Text>
+                                    </View>
+                                    <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }}>
+                                        {/* <TextInput
+                                            onChangeText={(value) => this.setState({ email: value })}
+                                            placeholder='Email Address'
+                                            placeholderTextColor='gray'
+                                            keyboardType={'email-address'}
+                                            value={this.state.email}
+                                            style={{ marginHorizontal: width(2.5), height: height(7), marginVertical: height(1), elevation: 5, borderRadius: 5, paddingLeft: width(4), backgroundColor:'white', fontSize: totalSize(2) }}
+                                        /> */}
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', backgroundColor: 'transparent' }}>
+                                            <Text style={[styles.welcome, { fontSize: totalSize(2.5), color: colors.SPA_redColor }]} onPress={() => this.goto_signup_Client()}>Client</Text>
+                                        </View>
+                                        <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent' }}>
+                                            <Text style={[styles.welcome, { fontSize: totalSize(6) }]}>|</Text>
+                                        </View>
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', backgroundColor: 'transparent' }}>
+                                            <Text style={[styles.welcome, { fontSize: totalSize(2.5), color: colors.SPA_redColor }]} onPress={() => this.goto_signup_Technician()}>Technician</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent' }}>
+                                        {/* <TouchableOpacity  style={[styles.button, { height: height(6), width: width(40) }]}>
+                                            <Text style={{ fontSize: totalSize(2), color: 'white' }}>Send</Text>
+                                        </TouchableOpacity> */}
+                                    </View>
+                                </View>
+                        }
+                    </View>
+                </Modal>
 
 
             </View>
@@ -277,7 +330,7 @@ const styles = StyleSheet.create({
         //marginTop: height(2),
         height: totalSize(15),
         width: totalSize(12),
-        resizeMode:'center'
+        resizeMode: 'center'
     },
     TxtInput: {
         width: width(70),
@@ -365,7 +418,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         //backgroundColor: 'rgb(180,210,53)',
         //backgroundColor: 'rgb(0,173,238)',
-        backgroundColor:'#49aaef',
+        backgroundColor: '#49aaef',
         marginVertical: height(5),
         elevation: 5,
         borderRadius: 5,

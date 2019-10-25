@@ -100,7 +100,7 @@ class Settings extends Component {
         </TouchableOpacity>
 
 
-        <TouchableOpacity style={styles.mainBtn} onPress={() => this.share()}>
+        <TouchableOpacity style={styles.mainBtn}>
           <View style={styles.btnIconContainer}>
             <View style={styles.IconContainer}>
               <Icon name="md-share" size={totalSize(2)} color='white' />
