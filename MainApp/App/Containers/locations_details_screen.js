@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, CheckBox, SafeAreaView, Text, StyleSheet } from 'react-native';
-import { Button, Block } from 'galio-framework';
+import { View, TouchableOpacity, CheckBox, SafeAreaView, StyleSheet } from 'react-native';
+import { Container, Button, Content, Card, CardItem, Text, Left, Body, Right, ListItem, Radio } from 'native-base';
 import { ButtonGroup } from 'react-native-elements';
+import colors from '../Themes/Colors';
 class LocationDetailsComponent extends Component {
     constructor(props) {
         super(props);
@@ -10,11 +11,14 @@ class LocationDetailsComponent extends Component {
             selectedIndex: 2
         };
         this.updateIndex = this.updateIndex.bind(this)
-        
+
     }
 
     static navigationOptions = {
         title: 'Berlin, Germany',
+        headerStyle: {
+            backgroundColor: colors.O_blueColor,
+        },
     }
 
     async componentDidMount() {
@@ -26,37 +30,80 @@ class LocationDetailsComponent extends Component {
         const buttons = ['5km', '10km', '25km']
         const { selectedIndex } = this.state
         return (
-
-            <SafeAreaView style={styles.container}>
-                <View>
-                    <View style={styles.container_row}>
-                        <Text p>Show push notifications</Text>
-                        <CheckBox
-                            center
-                            title='Show push notifications'
-                            iconRight
-                            iconType='material'
-                            checkedIcon='clear'
-                            uncheckedIcon='add'
-                            checkedColor='red'
-                            style={styles.checkbox}
-                            checked={this.state.push_notifications}
-                        />
-                    </View>
-                    <View style={styles.container_row}>
-                        <Text p>Set Radius</Text>
-                        <ButtonGroup
-                            onPress={this.updateIndex}
-                            selectedIndex={selectedIndex}
-                            buttons={buttons}
-                            containerStyle={styles.radius}
-                        />
-                    </View>
-                    <Block style={styles.delete}>
-                    <Button round uppercase color="red">DELETE</Button>
-                    </Block>
-                </View>
-            </SafeAreaView>
+            <Container>
+                <Content>
+                    <Card>
+                        <ListItem>
+                            <Left>
+                                <Text>Show notifications</Text>
+                            </Left>
+                            <Right>
+                                <CheckBox checked={true} />
+                            </Right>
+                        </ListItem>
+                        <ListItem>
+                            <Left>
+                                <Text>Set Radius</Text>
+                            </Left>
+                        </ListItem>
+                        <ListItem>
+                            <Left>
+                                <Text>5 KM</Text>
+                            </Left>
+                            <Right>
+                                <Radio selected={false} />
+                            </Right>
+                        </ListItem>
+                        <ListItem>
+                            <Left>
+                                <Text>10 KM</Text>
+                            </Left>
+                            <Right>
+                                <Radio selected={true} />
+                            </Right>
+                        </ListItem>
+                        <ListItem>
+                            <Left>
+                                <Text>25 KM</Text>
+                            </Left>
+                            <Right>
+                                <Radio selected={false} />
+                            </Right>
+                        </ListItem>
+                        <Button full danger><Text>Delete</Text></Button>
+                    </Card>
+                </Content>
+            </Container>
+            // <SafeAreaView style={styles.container}>
+            //     <View>
+            //         <View style={styles.container_row}>
+            //             <Text p>Show push notifications</Text>
+            //             <CheckBox
+            //                 center
+            //                 title='Show push notifications'
+            //                 iconRight
+            //                 iconType='material'
+            //                 checkedIcon='clear'
+            //                 uncheckedIcon='add'
+            //                 checkedColor='red'
+            //                 style={styles.checkbox}
+            //                 checked={this.state.push_notifications}
+            //             />
+            //         </View>
+            //         <View style={styles.container_row}>
+            //             <Text p>Set Radius</Text>
+            //             <ButtonGroup
+            //                 onPress={this.updateIndex}
+            //                 selectedIndex={selectedIndex}
+            //                 buttons={buttons}
+            //                 containerStyle={styles.radius}
+            //             />
+            //         </View>
+            //         <Block style={styles.delete}>
+            //         <Button round uppercase color="red">DELETE</Button>
+            //         </Block>
+            //     </View>
+            // </SafeAreaView>
         );
     }
 }
@@ -70,7 +117,7 @@ const styles = StyleSheet.create({
         width: null,
         alignItems: 'center'
     },
-    radius:{
+    radius: {
         flex: 5,
         height: 20,
     },
@@ -79,9 +126,9 @@ const styles = StyleSheet.create({
         flex: 5
     },
     delete: {
-        padding:20,
-        alignItems:'center'
-        
+        padding: 20,
+        alignItems: 'center'
+
     },
     checkbox: {
         flex: 1

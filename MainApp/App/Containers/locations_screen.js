@@ -1,18 +1,19 @@
 
 import React, { Component } from 'react';
-import { SafeAreaView, Button, TouchableHighlight, View, Modal, TouchableOpacity, FlatList, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, Button, TouchableHighlight, View, Modal, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Icon, Left, Body, Right } from 'native-base';
 import { totalSize } from 'react-native-dimension'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Entypo from 'react-native-vector-icons/Entypo'
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import colors from '../Themes/Colors';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 class LocationsScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
-            locations: ["Current location", "Berlin, Germany", "Amsterdam, Netherlands", "London, UK"]
+            locations: ["Current location", "Berlin, Germany", "London, UK"]
         };
         this.setModalVisible = this.setModalVisible.bind(this);
         this._handlePress = this._handlePress.bind(this);
@@ -32,10 +33,18 @@ class LocationsScreen extends Component {
             setModalVisible: this.setModalVisible
         })
     }
+    static navigationOptions = {
+        title: 'News Feed',
+        headerStyle: {
+            backgroundColor: colors.O_blueColor,
+        },
+    }
     static navigationOptions = ({ navigation }) => {
         return {
-            title: 'Locations',
-            headerTitleStyle: { fontFamily: 'Helvetica-Bold', fontSize: 30 },
+            title: 'Location',
+            headerStyle: {
+                backgroundColor: colors.O_blueColor,
+            },
             headerRight: () => (
                 <View >
                     <TouchableOpacity style={styles.header_button} onPress={() => {
@@ -54,10 +63,22 @@ class LocationsScreen extends Component {
     }
     renderItem({ item }) {
         return (
-            <TouchableOpacity style={styles.header_button} onPress={()=>
+
+
+            <TouchableOpacity style={styles.header_button} onPress={() =>
                 this._handlePress()
             }>
-                <View style={styles.view}>
+                <Card>
+                    <CardItem>
+                        <Left><FontAwesome name='map-marker' size={totalSize(3)} />
+                            <Text>{item}</Text></Left>
+
+                        <Right>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </CardItem>
+                </Card>
+                {/* <View style={styles.view}>
                     <View style={styles.location_row}>
                         <Text style={styles.location}>{item}</Text>
                         <AntDesign name='right' style={styles.details_image} size={totalSize(3)} />
@@ -68,18 +89,22 @@ class LocationsScreen extends Component {
                             borderBottomWidth: 0.4,
                         }}
                     />
-                </View>
+                </View> */}
             </TouchableOpacity>
         );
     }
 
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-                <FlatList
-                    data={this.state.locations}
-                    renderItem={this.renderItem}
-                />
+            <Container>
+
+                <Content>
+
+                    <FlatList
+                        data={this.state.locations}
+                        renderItem={this.renderItem}
+                    />
+                </Content>
                 <Modal
                     animationType="slide"
                     transparent={false}
@@ -93,7 +118,6 @@ class LocationsScreen extends Component {
                             fetchDetails={true}
                             styles={{
                                 textInputContainer: {
-                                    flex: 1,
                                     backgroundColor: 'rgba(0,0,0,0)',
                                     borderTopWidth: 0,
                                     borderBottomWidth: 0
@@ -108,6 +132,7 @@ class LocationsScreen extends Component {
                                 predefinedPlacesDescription: {
                                     color: '#1faadb'
                                 },
+
                             }}
                             query={{
                                 // available options: https://developers.google.com/places/web-service/autocomplete
@@ -129,7 +154,7 @@ class LocationsScreen extends Component {
                         </TouchableOpacity>
                     </View>
                 </Modal>
-            </SafeAreaView>
+            </Container>
         );
     }
 }

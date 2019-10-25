@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { theme, withGalio, GalioProvider } from 'galio-framework'
-import { Card } from 'galio-framework';
-import { View, SafeAreaView, FlatList, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+// import { Card } from 'galio-framework';
+import { View, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { totalSize, height } from 'react-native-dimension'
+import colors from '../Themes/Colors';
 import images from '../Images';
 class MainComponent extends Component {
     constructor(props) {
@@ -42,6 +45,9 @@ class MainComponent extends Component {
 
     static navigationOptions = {
         title: 'News Feed',
+        headerStyle: {
+            backgroundColor: colors.O_blueColor,
+          },
     }
 
     async componentDidMount() {
@@ -55,28 +61,50 @@ class MainComponent extends Component {
     renderItem({ item }) {
         return (
             <TouchableOpacity onPress={this._handlePress}>
-            <Card
-                flex
-                borderless
-                style={styles.card}
-                title={item.headline}
-                caption={item.content}
-                imageStyle={styles.cardImageRadius}
-                imageBlockStyle={{ padding: theme.SIZES.BASE / 2 }}
-                image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
-            />
+                <Card>
+                    <CardItem>
+                        <Left>
+                            <Body>
+                                <Text>{item.headline}</Text>
+                                <Text note>{item.content}</Text>
+                            </Body>
+                        </Left>
+                    </CardItem>
+                    <CardItem cardBody>
+                        <Image source={item.image} style={{ height: 200, width: null, flex: 1 }} />
+                    </CardItem>
+                    <CardItem>
+                            <Left><FontAwesome name='tag' size={totalSize(3)} /><Text note>{item.category}</Text></Left>
+                            <Left><FontAwesome name='clock-o' size={totalSize(3)} /><Text note>{item.timeAgo}</Text></Left>
+                    </CardItem>
+                </Card>
+                {/* <Card
+                    flex
+                    borderless
+                    style={styles.card}
+                    title={item.headline}
+                    caption={item.content}
+                    imageStyle={styles.cardImageRadius}
+                    imageBlockStyle={{ padding: theme.SIZES.BASE / 2 }}
+                    image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
+                /> */}
             </TouchableOpacity>
         );
     }
 
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-                <FlatList
-                    data={this.state.newsfeed}
-                    renderItem={this.renderItem}
-                />
-            </SafeAreaView>
+            <Container>
+                <Content padder>
+                    {/* <SideMenu menu={menu}>
+                    <ContentView />
+                </SideMenu> */}
+                    <FlatList
+                        data={this.state.newsfeed}
+                        renderItem={this.renderItem}
+                    />
+                </Content>
+            </Container>
         );
     }
 }

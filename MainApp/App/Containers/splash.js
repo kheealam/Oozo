@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, StyleSheet, Image } from 'react-native';
-import { totalSize, width, height } from 'react-native-dimension'
+import { ImageBackground, StyleSheet, Image } from 'react-native';
+import { totalSize, height } from 'react-native-dimension'
 import images from '../Themes/Images'
 class Splash extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class Splash extends Component {
     }
     
     async componentDidMount() {
-        setTimeout(() => { this.props.navigation.replace('login') }, 5000);
+        setTimeout(() => { this.props.navigation.navigate('login') }, 5000);
     }
 
 

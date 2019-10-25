@@ -3,10 +3,9 @@ import { View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-nat
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { totalSize, height } from 'react-native-dimension'
-import { theme, Text, withGalio, GalioProvider } from 'galio-framework'
-import { Block } from 'galio-framework';
-import { Card } from 'galio-framework';
+import { Container, Button, Content, Card, CardItem, Text, Left, Body, Right, ListItem, Radio } from 'native-base';
 import images from '../Images';
+import colors from '../Themes/Colors';
 class DetailsComponent extends Component {
     constructor(props) {
         super(props);
@@ -25,6 +24,9 @@ class DetailsComponent extends Component {
 
     static navigationOptions = {
         title: 'Roosendaal',
+        headerStyle: {
+            backgroundColor: colors.O_blueColor,
+        },
     }
 
     async componentDidMount() {
@@ -32,30 +34,52 @@ class DetailsComponent extends Component {
 
     render() {
         return (
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <Block style={styles.container_column}>
-                    <Text h4>{this.state.detail.headline}</Text>
-                    <Block style={styles.container_row}>
-                        <EvilIcons style={styles.icon} name="clock" size={totalSize(3)}/>
-                        <Text style={styles.greytext}>{this.state.detail.datetime}</Text>
-                    </Block>
-                    <Block style={styles.container_row}>
-                        <FontAwesome style={styles.icon} name="map-marker" size={totalSize(3)}/>
-                        <Text style={styles.greytext}>{this.state.detail.location}</Text>
-                    </Block>
-                    <Block style={styles.container_row}>
-                        <FontAwesome style={styles.icon} name="newspaper-o" size={totalSize(3)} />
-                        <Text style={styles.greytext}>{this.state.detail.source}</Text>
-                    </Block>
-                    <Block style={styles.container_row}>
-                        <FontAwesome style={styles.icon} name="bell" size={totalSize(3)} />
-                        <Text style={styles.greytext}>{this.state.detail.alert}</Text>
-                    </Block> 
-                    <Text p>{this.state.detail.summary}</Text>
-                    <Text muted>{this.state.detail.article}</Text>
-                    <Image style={styles.image} source={images.feed2}></Image>
-                </Block>
-            </ScrollView>
+            <Container>
+                <Content>
+                    <Card style={{ flex: 0 }}>
+                        <CardItem>
+                                <Body>
+                                    <Text>{this.state.detail.headline}</Text>
+                                    <Text note>{this.state.detail.datetime}</Text>
+                                </Body>
+                            
+                        </CardItem>
+                        <CardItem>
+                        <Image source={images.feed2} style={{ height: 200, width: null, flex: 1 }} />
+                        </CardItem>
+                        <CardItem>
+                            <Body>
+                                <Text>{this.state.detail.summary}</Text>
+                                <Text>{this.state.detail.article}</Text>
+                            </Body>
+                        </CardItem>
+                    </Card>
+                </Content>
+            </Container>
+            // <ScrollView showsVerticalScrollIndicator={false}>
+            //     <Block style={styles.container_column}>
+            //         <Text h4>{this.state.detail.headline}</Text>
+            //         <Block style={styles.container_row}>
+            //             <EvilIcons style={styles.icon} name="clock" size={totalSize(3)}/>
+            //             <Text style={styles.greytext}>{this.state.detail.datetime}</Text>
+            //         </Block>
+            //         <Block style={styles.container_row}>
+            //             <FontAwesome style={styles.icon} name="map-marker" size={totalSize(3)}/>
+            //             <Text style={styles.greytext}>{this.state.detail.location}</Text>
+            //         </Block>
+            //         <Block style={styles.container_row}>
+            //             <FontAwesome style={styles.icon} name="newspaper-o" size={totalSize(3)} />
+            //             <Text style={styles.greytext}>{this.state.detail.source}</Text>
+            //         </Block>
+            //         <Block style={styles.container_row}>
+            //             <FontAwesome style={styles.icon} name="bell" size={totalSize(3)} />
+            //             <Text style={styles.greytext}>{this.state.detail.alert}</Text>
+            //         </Block> 
+            //         <Text p>{this.state.detail.summary}</Text>
+            //         <Text muted>{this.state.detail.article}</Text>
+            //         <Image style={styles.image} source={images.feed2}></Image>
+            //     </Block>
+            // </ScrollView>
         );
     }
 }
