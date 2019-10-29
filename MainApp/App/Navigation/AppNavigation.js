@@ -27,7 +27,7 @@ const NewsFeedStack = createStackNavigator({
     },
 },
     {
-        initialRouteName: 'main'
+        initialRouteName: 'main',
     });
 const LocationsStack = createStackNavigator({
     locations: {
@@ -42,28 +42,28 @@ const LocationsStack = createStackNavigator({
 });
 
 NewsFeedStack.navigationOptions = {
-    tabBarLabel: 'News Feed',
+    tabBarLabel: '112 meldingen',
     tabBarIcon: ({ tintColor }) => (
-        <Entypo name="home" color={tintColor} size={totalSize(3.5)} />
+        <Entypo name="home" color={tintColor} size={totalSize(3)} />
     )
 };
 
 LocationsStack.navigationOptions = {
-    tabBarLabel: 'Locations',
+    tabBarLabel: 'Mijn locaties',
     tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="map-marker" color={tintColor} size={totalSize(3.5)} />
+        <FontAwesome name="map-marker" color={tintColor} size={totalSize(3)} />
     )
 };
 Settings.navigationOptions = {
-    tabBarLabel: 'Settings',
+    tabBarLabel: 'Instellingen',
     tabBarIcon: ({ tintColor }) => (
-        <AntDesign name="setting" color={tintColor} size={totalSize(3.5)} />
+        <AntDesign name="setting" color={tintColor} size={totalSize(3)} />
     )
 };
 EditProfileClient.navigationOptions= {
-    tabBarLabel: 'Profile',
+    tabBarLabel: 'Meld nieuws',
     tabBarIcon: ({ tintColor }) => (
-        <Fontisto name="person" color={tintColor} size={totalSize(3.5)} />
+        <Fontisto name="person" color={tintColor} size={totalSize(3)} />
     )
 };
 // const WIDTH = Dimensions.get('window').width;
@@ -107,7 +107,12 @@ const TabNavigator = createBottomTabNavigator({
     Profile: EditProfileClient,
     Settings: Settings
 }, {
-    initialRouteName: 'News'
+    initialRouteName: 'News',
+    tabBarOptions: {
+        style:{
+            padding: 5,
+            height:65}
+    }, 
 
 });
 const SwitchNavigator = createSwitchNavigator({

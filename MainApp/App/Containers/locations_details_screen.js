@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, CheckBox, SafeAreaView, StyleSheet } from 'react-native';
-import { Container, Button, Content, Card, CardItem, Text, Left, Body, Right, ListItem, Radio } from 'native-base';
-import { ButtonGroup } from 'react-native-elements';
+import { CheckBox, StyleSheet } from 'react-native';
+import { Container, Button, Content, Card, Text, Left, Right, ListItem, Radio } from 'native-base';
 import colors from '../Themes/Colors';
 class LocationDetailsComponent extends Component {
     constructor(props) {
@@ -35,7 +34,7 @@ class LocationDetailsComponent extends Component {
                     <Card>
                         <ListItem>
                             <Left>
-                                <Text>Show notifications</Text>
+                                <Text>Stuur notificaties</Text>
                             </Left>
                             <Right>
                                 <CheckBox checked={true} />
@@ -43,12 +42,12 @@ class LocationDetailsComponent extends Component {
                         </ListItem>
                         <ListItem>
                             <Left>
-                                <Text>Set Radius</Text>
+                                <Text>Selecteer de straal</Text>
                             </Left>
                         </ListItem>
                         <ListItem>
                             <Left>
-                                <Text>5 KM</Text>
+                                <Text>5 km</Text>
                             </Left>
                             <Right>
                                 <Radio selected={false} />
@@ -56,7 +55,7 @@ class LocationDetailsComponent extends Component {
                         </ListItem>
                         <ListItem>
                             <Left>
-                                <Text>10 KM</Text>
+                                <Text>10 km</Text>
                             </Left>
                             <Right>
                                 <Radio selected={true} />
@@ -64,13 +63,13 @@ class LocationDetailsComponent extends Component {
                         </ListItem>
                         <ListItem>
                             <Left>
-                                <Text>25 KM</Text>
+                                <Text>25 km</Text>
                             </Left>
                             <Right>
                                 <Radio selected={false} />
                             </Right>
                         </ListItem>
-                        <Button full danger><Text>Delete</Text></Button>
+                        <Button full danger><Text>Verwijder deze locatie</Text></Button>
                     </Card>
                 </Content>
             </Container>

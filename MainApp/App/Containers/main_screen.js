@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { theme, withGalio, GalioProvider } from 'galio-framework'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 // import { Card } from 'galio-framework';
-import { View, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity,TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -20,7 +20,7 @@ class MainComponent extends Component {
                     headline: "Vrouwelijke winkeldief aangehouden na bedreiging",
                     content: "Roosendaal - Een winkeldievegge heeft vrijdag 18 oktober 2019 kort na het middaguur op straat personeelsleden van een winkel aan de Rucphensebaan (vermoedelijk) bedreigd met een mes, nadat ze betrapt was op winkeldiefstal. Ze is korte tijd later aangehouden door de politie.",
                     timeAgo: "45 minuten geleden",
-                    category: "Politienieuws",
+                    category: "Afkomstig van 112",
                     image: images.feed1
                 },
                 {
@@ -28,7 +28,7 @@ class MainComponent extends Component {
                     headline: "Man aangehouden op verdenking van zware mishandeling en bedreiging",
                     content: "Roosendaal - Politiemensen hebben zaterdag 19 oktober 2019 rond het middaguur een 36-jarige man uit Roosendaal aangehouden op verdenking van zware mishandeling. De man wordt er van verdacht in de nacht van vrijdag 18 op zaterdag 19 oktober 2019 tussen 02.45 uur en 03.10 uur in een café aan de Bredaseweg een 47-jarige man en een 25-jarige vrouw uit Roosendaal te hebben bedreigd en mishandeld. Beiden deden hiervan aangifte.",
                     timeAgo: "38 minuten geleden",
-                    category: "Politienieuws",
+                    category: "Afkomstig van 112",
                     image: images.feed2
                 },
                 {
@@ -36,7 +36,7 @@ class MainComponent extends Component {
                     headline: "Insluiper besluit eerst te gaan slapen",
                     content: "Tilburg - Een insluiper is zaterdagochtend wel heel gemakkelijk opgepakt. Hij lag nog te slapen in het atelier waar hij was binnen geslopen.",
                     timeAgo: "1 uur en 31 minuten geleden",
-                    category: "Politienieuws",
+                    category: "Afkomstig van 112",
                     image: images.feed3
                 }]
         };
@@ -44,10 +44,10 @@ class MainComponent extends Component {
     }
 
     static navigationOptions = {
-        title: 'News Feed',
+        title: '112 meldingen en nieuws',
         headerStyle: {
             backgroundColor: colors.O_blueColor,
-          },
+        },
     }
 
     async componentDidMount() {
@@ -60,7 +60,7 @@ class MainComponent extends Component {
     }
     renderItem({ item }) {
         return (
-            <TouchableOpacity onPress={this._handlePress}>
+            <TouchableWithoutFeedback onPress={this._handlePress}>
                 <Card>
                     <CardItem>
                         <Left>
@@ -71,12 +71,15 @@ class MainComponent extends Component {
                         </Left>
                     </CardItem>
                     <CardItem cardBody>
-                        <Image source={item.image} style={{ height: 200, width: null, flex: 1 }} />
+                        <Image source={item.image} style={{ height: 200, width: null, flex: 1, resizeMode: 'contain' }} />
                     </CardItem>
                     <CardItem>
-                            <Left><FontAwesome name='tag' size={totalSize(3)} /><Text note>{item.category}</Text></Left>
-                            <Left><FontAwesome name='clock-o' size={totalSize(3)} /><Text note>{item.timeAgo}</Text></Left>
+                        <Left><FontAwesome name='clock-o' size={totalSize(3)} /><Text note>{item.timeAgo}</Text></Left>
                     </CardItem>
+                    <CardItem>
+                        <Left><FontAwesome name='newspaper-o' size={totalSize(3)} /><Text note>{item.category}</Text></Left>
+                    </CardItem>
+
                 </Card>
                 {/* <Card
                     flex
@@ -88,7 +91,7 @@ class MainComponent extends Component {
                     imageBlockStyle={{ padding: theme.SIZES.BASE / 2 }}
                     image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
                 /> */}
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
         );
     }
 

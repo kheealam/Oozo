@@ -13,7 +13,7 @@ class LocationsScreen extends Component {
         super(props);
         this.state = {
             modalVisible: false,
-            locations: ["Current location", "Berlin, Germany", "London, UK"]
+            locations: ["Huidige locatie", "Berlin, Germany", "London, UK"]
         };
         this.setModalVisible = this.setModalVisible.bind(this);
         this._handlePress = this._handlePress.bind(this);
@@ -41,7 +41,7 @@ class LocationsScreen extends Component {
     }
     static navigationOptions = ({ navigation }) => {
         return {
-            title: 'Location',
+            title: 'Mijn locaties',
             headerStyle: {
                 backgroundColor: colors.O_blueColor,
             },
@@ -111,7 +111,7 @@ class LocationsScreen extends Component {
                     visible={this.state.modalVisible}>
                     <View style={styles.container_row}>
                         <GooglePlacesAutocomplete
-                            placeholder='Enter Location'
+                            placeholder='Voer je locatie'
                             minLength={2}
                             autoFocus={false}
                             returnKeyType={'default'}
@@ -138,7 +138,8 @@ class LocationsScreen extends Component {
                                 // available options: https://developers.google.com/places/web-service/autocomplete
                                 key: 'AIzaSyDeR1FwfTaNez2grMfnY6GpP-JTcypiVWg',
                                 language: 'en', // language of the results
-                                types: '(cities)' // default: 'geocode'
+                                types: '(cities)', // default: 'geocode'
+                                components:"country:nl"
                             }}
                             currentLocation={false}
                         />

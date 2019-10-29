@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageBackground, StyleSheet, Image } from 'react-native';
+import { ImageBackground, StyleSheet, Image, Text } from 'react-native';
 import { totalSize, height } from 'react-native-dimension'
 import images from '../Themes/Images'
 class Splash extends Component {
@@ -14,7 +14,7 @@ class Splash extends Component {
     }
     
     async componentDidMount() {
-        setTimeout(() => { this.props.navigation.navigate('login') }, 5000);
+        setTimeout(() => { this.props.navigation.navigate('login') }, 2000);
     }
 
 
@@ -24,6 +24,7 @@ class Splash extends Component {
         return (
             <ImageBackground style={styles.ImageBg}>
                 <Image source={images.logo} style={styles.logo} />
+                <Text>Weet wat er in jouw buurt of straat gebeurt!</Text>
             </ImageBackground>
         );
     }
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     },
     logo: {
         //marginTop: height(30),
-        height: 300,
+        height: 80,
         width: 200,
         resizeMode:'contain'
         //marginBottom: height(3),

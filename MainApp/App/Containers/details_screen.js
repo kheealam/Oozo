@@ -12,7 +12,7 @@ class DetailsComponent extends Component {
         this.state = {
             detail: {
                 headline: "Man aangehouden op verdenking van zware mishandeling en bedreiging",
-                datetime: "Zaterdag 19 oktober 2019 13:46 uur",
+                timeAgo: "1 minuut geleden",
                 location: "Bredaseweg Roosendaal",
                 source: "Bron Politie.nl",
                 alert: "Mishandeling",
@@ -24,6 +24,12 @@ class DetailsComponent extends Component {
 
     static navigationOptions = {
         title: 'Roosendaal',
+        headerTintColor: "#7ea512",
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 22,
+
+        },
         headerStyle: {
             backgroundColor: colors.O_blueColor,
         },
@@ -38,14 +44,25 @@ class DetailsComponent extends Component {
                 <Content>
                     <Card style={{ flex: 0 }}>
                         <CardItem>
-                                <Body>
-                                    <Text>{this.state.detail.headline}</Text>
-                                    <Text note>{this.state.detail.datetime}</Text>
-                                </Body>
-                            
+                            <Body>
+                                <Text>{this.state.detail.headline}</Text>
+                            </Body>
+                        </CardItem>
+
+                        <CardItem>
+                            <Left><FontAwesome name='clock-o' size={totalSize(3)} /><Text note>{this.state.detail.timeAgo}</Text></Left>
                         </CardItem>
                         <CardItem>
-                        <Image source={images.feed2} style={{ height: 200, width: null, flex: 1 }} />
+                            <Left><FontAwesome name='newspaper-o' size={totalSize(3)} /><Text note>{this.state.detail.source}</Text></Left>
+                        </CardItem>
+                        <CardItem>
+                            <Left><FontAwesome name='map-marker' size={totalSize(3)} /><Text note>{this.state.detail.location}</Text></Left>
+                        </CardItem>
+                        <CardItem>
+                            <Left><FontAwesome name='bell' size={totalSize(3)} /><Text note>{this.state.detail.alert}</Text></Left>
+                        </CardItem>
+                        <CardItem>
+                            <Image source={images.feed2} style={{ height: 200, width: null, flex: 1 }} />
                         </CardItem>
                         <CardItem>
                             <Body>
@@ -56,30 +73,6 @@ class DetailsComponent extends Component {
                     </Card>
                 </Content>
             </Container>
-            // <ScrollView showsVerticalScrollIndicator={false}>
-            //     <Block style={styles.container_column}>
-            //         <Text h4>{this.state.detail.headline}</Text>
-            //         <Block style={styles.container_row}>
-            //             <EvilIcons style={styles.icon} name="clock" size={totalSize(3)}/>
-            //             <Text style={styles.greytext}>{this.state.detail.datetime}</Text>
-            //         </Block>
-            //         <Block style={styles.container_row}>
-            //             <FontAwesome style={styles.icon} name="map-marker" size={totalSize(3)}/>
-            //             <Text style={styles.greytext}>{this.state.detail.location}</Text>
-            //         </Block>
-            //         <Block style={styles.container_row}>
-            //             <FontAwesome style={styles.icon} name="newspaper-o" size={totalSize(3)} />
-            //             <Text style={styles.greytext}>{this.state.detail.source}</Text>
-            //         </Block>
-            //         <Block style={styles.container_row}>
-            //             <FontAwesome style={styles.icon} name="bell" size={totalSize(3)} />
-            //             <Text style={styles.greytext}>{this.state.detail.alert}</Text>
-            //         </Block> 
-            //         <Text p>{this.state.detail.summary}</Text>
-            //         <Text muted>{this.state.detail.article}</Text>
-            //         <Image style={styles.image} source={images.feed2}></Image>
-            //     </Block>
-            // </ScrollView>
         );
     }
 }

@@ -57,48 +57,6 @@ class Settings extends Component {
         {/* <Icon name="ios-settings" size={totalSize(40)} />
         <Text style={styles.Txt}> Settings </Text>
         <Text>This is the settings screen</Text> */}
-        <TouchableOpacity style={styles.mainBtn} >
-          <View style={styles.btnIconContainer}>
-            <View style={styles.IconContainer}>
-              <EntypoIcons name="tools" size={totalSize(2)} color='white' />
-            </View>
-          </View>
-          <View style={styles.btnTxtContainer}>
-            <Text style={styles.btnTxt1}>How it works</Text>
-          </View>
-          <View style={styles.arrowContainer}>
-            <Icon name="ios-arrow-forward" size={totalSize(2)} color='rgb(217,217,217)' />
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.mainBtn} onPress={() => { Linking.openURL('mailto:testing@mailinator.com?subject=In the Nick of Time &body=Hi Team,') }} >
-          <View style={styles.btnIconContainer}>
-            <View style={styles.IconContainer}>
-              <Icon name="ios-mail" size={totalSize(2)} color='white' />
-            </View>
-          </View>
-          <View style={styles.btnTxtContainer}>
-            <Text style={styles.btnTxt1}>Contact Us</Text>
-          </View>
-          <View style={styles.arrowContainer}>
-            <Icon name="ios-arrow-forward" size={totalSize(2)} color='rgb(217,217,217)' />
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.mainBtn} onPress={() => { Linking.openURL('https://www.oozo.nl/') }} >
-          <View style={styles.btnIconContainer}>
-            <View style={styles.IconContainer}>
-              <Icon name="ios-calendar" size={totalSize(2)} color='white' />
-            </View>
-          </View>
-          <View style={styles.btnTxtContainer}>
-            <Text style={styles.btnTxt1}>Events</Text>
-          </View>
-          <View style={styles.arrowContainer}>
-            <Icon name="ios-arrow-forward" size={totalSize(2)} color='rgb(217,217,217)' />
-          </View>
-        </TouchableOpacity>
-
 
         <TouchableOpacity style={styles.mainBtn}>
           <View style={styles.btnIconContainer}>
@@ -129,22 +87,6 @@ class Settings extends Component {
             <Icon name="ios-arrow-forward" size={totalSize(2)} color='rgb(217,217,217)' />
           </View>
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.mainBtn} onPress={() => this._toggleModalLogout()}>
-          <View style={styles.btnIconContainer}>
-            <View style={styles.IconContainer}>
-              <Icon name="ios-log-out" size={totalSize(2)} color='white' />
-            </View>
-          </View>
-          <View style={styles.btnTxtContainer}>
-            <Text style={styles.btnTxt1}>Logout</Text>
-            {/* <Text style={styles.btnTxt2}>See FEEDBACK</Text> */}
-          </View>
-          <View style={styles.arrowContainer}>
-            <Icon name="ios-arrow-forward" size={totalSize(2)} color='rgb(217,217,217)' />
-          </View>
-        </TouchableOpacity>
-
 
         {/* <TouchableOpacity style={styles.mainBtn} onPress={() => this.props.navigation.navigate('rateAppUser')}>
           <View style={styles.btnIconContainer}>
